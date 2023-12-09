@@ -9,6 +9,7 @@ import ar.edu.utn.frbb.tup.model.exception.EstadoIncorrectoException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Alumno {
     private long id;
@@ -17,17 +18,19 @@ public class Alumno {
     private String apellido;
     private long dni;
 
-    private List<Asignatura> asignaturas;
+    private List<Asignatura> asignaturas = new ArrayList<>(asignaturasRandom());
 
     public Alumno() {
     }
-    public Alumno(String nombre, String apellido, long dni) {
+    public Alumno(String nombre, String apellido, long dni, List<Asignatura> asignaturas) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.asignaturas = asignaturas;
+    }
 
-        asignaturas = new ArrayList<>();
-
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
     }
 
     public void setNombre(String nombre) {
@@ -58,8 +61,30 @@ public class Alumno {
         this.asignaturas.add(a);
     }
 
+    public List<Asignatura> asignaturasRandom() {
+        Random r1 = new Random();
+        Random r2 = new Random();
+        Random r3 = new Random();
+        Profesor p1 = new Profesor("Sebastian", "Grañan", "programador");
+        Carrera c1 = new Carrera("Programacion", 141, 5, 4);
+        Materia m1 = new Materia("Laboratorio 4", 2, 4, p1, c1);
+        Materia m2 = new Materia("Programacion 4", 2, 4, p1, c1);
+        Materia m3 = new Materia("Diseño y Administracion de Bases de Datos", 2, 4, p1, c1);
+        Asignatura a1 = new Asignatura(m1);
+        a1.setId(r1.nextLong());
+        Asignatura a2 = new Asignatura(m2);
+        a2.setId(r2.nextLong());
+        Asignatura a3 = new Asignatura(m3);
+        a3.setId(r3.nextLong());
+        List<Asignatura> aRandom = new ArrayList<>();
+        aRandom.add(a1);
+        aRandom.add(a2);
+        aRandom.add(a3);
+        return aRandom;
+    }
+
     public List<Asignatura> obtenerListaAsignaturas(){
-        return this.asignaturas;
+        return asignaturas;
     }
 
     public void aprobarAsignatura(Materia materia, int nota) throws EstadoIncorrectoException, CorrelatividadException, AsignaturaInexistenteException {
@@ -102,7 +127,10 @@ public class Alumno {
              asignaturas) {
             if (a.getNombreAsignatura().equals(asignatura.getNombreAsignatura())) {
                 a.setEstado(asignatura.getEstado());
-                a.setNota(asignatura.getNota().get());
+                if (asignatura.getNota().isPresent()) {
+                    a.setNota(asignatura.getNota().get());
+                }
+
             }
         }
 

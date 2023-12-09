@@ -9,6 +9,17 @@ public class Materia {
     private int materiaId;
     private String nombre;
 
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+
+    private Carrera carrera;
+
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -50,11 +61,12 @@ public class Materia {
     public Materia(){}
 
 
-    public Materia(String nombre, int anio, int cuatrimestre, Profesor profesor) {
+    public Materia(String nombre, int anio, int cuatrimestre, Profesor profesor, Carrera carrera) {
         this.anio = anio;
         this.cuatrimestre = cuatrimestre;
         this.nombre = nombre;
         this.profesor = profesor;
+        this.carrera = carrera;
 
         correlatividades = new ArrayList<>();
     }
@@ -85,11 +97,11 @@ public class Materia {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Materia materia = (Materia) o;
-        return materiaId == materia.materiaId && anio == materia.anio && cuatrimestre == materia.cuatrimestre && Objects.equals(nombre, materia.nombre) && Objects.equals(profesor, materia.profesor) && Objects.equals(correlatividades, materia.correlatividades);
+        return materiaId == materia.materiaId && anio == materia.anio && cuatrimestre == materia.cuatrimestre && Objects.equals(nombre, materia.nombre) && Objects.equals(profesor, materia.profesor) && Objects.equals(correlatividades, materia.correlatividades) && Objects.equals(carrera, materia.carrera);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(materiaId, nombre, anio, cuatrimestre, profesor, correlatividades);
+        return Objects.hash(materiaId, nombre, anio, cuatrimestre, profesor, correlatividades, carrera);
     }
 }

@@ -12,11 +12,12 @@ public class AsignaturaTest {
 
     private static Materia materia;
     private static Profesor profesor;
+    private static Carrera carrera;
 
     @BeforeAll
     public static void setUp(){
         profesor = new Profesor("Luciano", "Salotto", "Lic.");
-        materia = new Materia("Laboratorio 3", 2, 1, profesor);
+        materia = new Materia("Laboratorio 3", 2, 1, profesor, carrera);
     }
 
     @Test

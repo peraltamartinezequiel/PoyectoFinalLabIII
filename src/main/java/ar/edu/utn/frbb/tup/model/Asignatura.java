@@ -5,9 +5,19 @@ import ar.edu.utn.frbb.tup.model.exception.EstadoIncorrectoException;
 import java.util.Optional;
 
 public class Asignatura {
+    private long id;
 
     private Materia materia;
     private EstadoAsignatura estado;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     private Integer nota;
 
     public Asignatura() {

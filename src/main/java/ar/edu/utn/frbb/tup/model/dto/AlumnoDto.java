@@ -1,5 +1,9 @@
 package ar.edu.utn.frbb.tup.model.dto;
 
+import ar.edu.utn.frbb.tup.model.Asignatura;
+
+import java.util.List;
+
 public class AlumnoDto {
     String nombre;
     String apellido;

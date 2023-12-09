@@ -5,6 +5,9 @@ import ar.edu.utn.frbb.tup.model.exception.CorrelatividadesNoAprobadasException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AlumnoTest {
@@ -15,6 +18,7 @@ public class AlumnoTest {
     private static Materia m3;
     private static Materia m4;
     private static Profesor profesor1;
+    private static Carrera carrera1;
     private static Asignatura a1;
     private static Asignatura a2;
     private static Asignatura a3;
@@ -25,10 +29,10 @@ public class AlumnoTest {
     public static void setUp() {
 
         profesor1 = new Profesor("Luciano", "Salotto", "Lic.");
-        m1 = new Materia("Laboratorio 1", 1, 1, profesor1);
-        m2 = new Materia("Laboratorio 2", 1, 2, profesor1);
-        m3 = new Materia("Laboratorio 3", 2, 1, profesor1);
-        m4 = new Materia("Laboratorio 4", 2, 2, profesor1);
+        m1 = new Materia("Laboratorio 1", 1, 1, profesor1, carrera1);
+        m2 = new Materia("Laboratorio 2", 1, 2, profesor1, carrera1);
+        m3 = new Materia("Laboratorio 3", 2, 1, profesor1, carrera1);
+        m4 = new Materia("Laboratorio 4", 2, 2, profesor1, carrera1);
         m2.agregarCorrelatividad(m1);
         m3.agregarCorrelatividad(m1);
         m3.agregarCorrelatividad(m2);
@@ -44,7 +48,8 @@ public class AlumnoTest {
 
     @Test
     public void testNewAlumno() {
-        alumno = new Alumno("Stefano", "D'Annunzio", 42431228);
+        List<Asignatura> a1 = new ArrayList<>();
+        alumno = new Alumno("Stefano", "D'Annunzio", 42431228, a1);
         assertEquals("Stefano", alumno.getNombre());
         assertEquals("D'Annunzio", alumno.getApellido());
         assertEquals(42431228, alumno.getDni());
@@ -53,7 +58,8 @@ public class AlumnoTest {
 
     @Test
     public void testNewAlumnoConAsignaturas() {
-        alumno = new Alumno("Stefano", "D'Annunzio", 42431228);
+        List<Asignatura> asignaturas = new ArrayList<>();
+        alumno = new Alumno("Stefano", "D'Annunzio", 42431228, asignaturas);
         alumno.agregarAsignatura(a1);
         alumno.agregarAsignatura(a2);
         alumno.agregarAsignatura(a3);
@@ -68,7 +74,8 @@ public class AlumnoTest {
 
     @Test
     public void testNewAlumnoCursandoAsignaturas(){
-        alumno = new Alumno("Stefano", "D'Annunzio", 42431228);
+        List<Asignatura> asignaturas = new ArrayList<>();
+        alumno = new Alumno("Stefano", "D'Annunzio", 42431228, asignaturas);
         alumno.agregarAsignatura(a1);
         alumno.agregarAsignatura(a2);
         alumno.agregarAsignatura(a3);
@@ -87,7 +94,8 @@ public class AlumnoTest {
 
     @Test
     public void testNewAlumnoAprobandoAsignaturas() throws EstadoIncorrectoException {
-        alumno = new Alumno("Stefano", "D'Annunzio", 42431228);
+        List<Asignatura> asignaturas = new ArrayList<>();
+        alumno = new Alumno("Stefano", "D'Annunzio", 42431228, asignaturas);
         alumno.agregarAsignatura(a1);
         alumno.agregarAsignatura(a2);
         alumno.agregarAsignatura(a3);
