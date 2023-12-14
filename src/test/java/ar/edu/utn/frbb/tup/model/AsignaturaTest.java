@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class AsignaturaTest {
 
-    private static Materia materia;
+    static Materia materia;
     private static Profesor profesor;
     private static Carrera carrera;
 

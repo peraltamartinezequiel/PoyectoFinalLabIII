@@ -29,6 +29,7 @@ public class AlumnoTest {
     public static void setUp() {
 
         profesor1 = new Profesor("Luciano", "Salotto", "Lic.");
+        carrera1 = new Carrera("Tecnicatura Universitaria en Programacion", 141, 5, 4);
         m1 = new Materia("Laboratorio 1", 1, 1, profesor1, carrera1);
         m2 = new Materia("Laboratorio 2", 1, 2, profesor1, carrera1);
         m3 = new Materia("Laboratorio 3", 2, 1, profesor1, carrera1);
